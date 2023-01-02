@@ -18,4 +18,24 @@ class guruController extends Controller
         guru::create($request->except('_token', 'submit'));
         return redirect('/guru');
     }
+
+    public function delete($id)
+    {
+        $find = guru::find($id);
+        $find->delete();
+        return redirect('/guru');
+    }
+
+    public function updateview($id)
+    {
+        $find = guru::find($id);
+        return view('update', ['guru' => $find]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $find = guru::find($id);
+        $find->update($request->except('_token', 'submit'));
+        return redirect('/guru');
+    }
 }

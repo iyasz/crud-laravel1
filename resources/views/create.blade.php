@@ -50,32 +50,45 @@
             </div>
         </div>
         <div class="row mt-5 justify-content-center">
-                <div class="col-11">
+            <div class="col-11">
 
-                    <table class="table">
-                        <thead>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Alamat</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($guru as $data)
                             <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Alamat</th>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $data->name }}</td>
+                                <td>{{ $data->age }}</td>
+                                <td>
+                                    @if ($data->gender == 'M')
+                                        Laki - Laki
+                                    @else
+                                        Perempuan
+                                    @endif
+                                </td>
+                                <td>{{ $data->alamat }}</td>
+                                <td class="d-flex gap-1">
+                                    <a class="btn btn-primary btn-sm" href="/guru/update/{{$data->id}}">Edit</a>
+                                    <form action="/guru/delete/{{$data->id}}" method="get">
+                                        @csrf
+                                       <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($guru as $data)
-                                
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$data->name}}</td>
-                                <td>{{$data->age}}</td>
-                                <td>{{$data->gender}}</td>
-                                <td>{{$data->alamat}}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

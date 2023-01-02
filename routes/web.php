@@ -21,3 +21,9 @@ Route::get('/', function () {
 Route::get('/guru', [guruController::class, 'index']);
 
 Route::post('/guru/store', [guruController::class, 'create']);
+
+Route::get('/guru/delete/{id}', [guruController::class, 'delete']);
+
+Route::get('/guru/update/{id}', [guruController::class, 'updateview']);
+
+Route::put('/guru/{id}', [guruController::class, 'update']);
